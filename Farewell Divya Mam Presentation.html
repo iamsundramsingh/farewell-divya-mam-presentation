@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farewell Divya Mam 🧪</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --secondary: #14b8a6;
+            --accent: #8b5cf6;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a; /* Dark slate */
+            color: #f8fafc;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            user-select: none;
+            cursor: pointer; /* Suggests clicking for ripple */
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .ripple {
+            position: fixed;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleAnim 0.8s ease-out forwards;
+            pointer-events: none;
+            z-index: 9999;
+            width: 100px;
+            height: 100px;
+            mix-blend-mode: screen;
+        }
+
+        @keyframes rippleAnim {
+            0% {
+                transform: translate(-50%, -50%) scale(0.2);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(8);
+                opacity: 0;
+            }
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 0;
+            pointer-events: none;
+            padding: 1.5rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            z-index: 10;
+            pointer-events: auto;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 35px 0 rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            animation: shine 6s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 200%; }
+            100% { left: 200%; }
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; pointer-events: none;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), rgba(14, 165, 233, 0.1));
+            border: 1px solid rgba(14, 165, 233, 0.3);
+            animation: rise linear forwards;
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-110vh) translateX(30px) scale(1.5); opacity: 0; }
+        }
+
+        .atom-spinner {
+            position: fixed;
+            width: 400px; height: 400px;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.04;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .orbit {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 2px solid #0ea5e9;
+            border-radius: 50%;
+            animation: spin 15s linear infinite;
+        }
+        .orbit:nth-child(2) { transform: rotate(60deg); animation-duration: 20s; border-color: #14b8a6; }
+        .orbit:nth-child(3) { transform: rotate(120deg); animation-duration: 25s; border-color: #8b5cf6; }
+        
+        .core {
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 40px; height: 40px;
+            background: #e2e8f0;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 30px 10px rgba(14, 165, 233, 0.5);
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        .neon-text-sky { text-shadow: 0 0 10px rgba(14, 165, 233, 0.7), 0 0 20px rgba(14, 165, 233, 0.5); }
+        .neon-text-teal { text-shadow: 0 0 10px rgba(20, 184, 166, 0.7), 0 0 20px rgba(20, 184, 166, 0.5); }
+        .neon-text-violet { text-shadow: 0 0 10px rgba(139, 92, 246, 0.7), 0 0 20px rgba(139, 92, 246, 0.5); }
+
+        .hex-bg {
+            position: absolute; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='104' viewBox='0 0 60 104' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 104L60 86.6L60 52L30 34.6L0 52L0 86.6Z' fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1'/%3E%3Cpath d='M30 52L60 34.6L60 0L30 -17.3L0 0L0 34.6Z' fill='none' stroke='rgba(255,255,255,0.02)' stroke-width='1'/%3E%3C/svg%3E");
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="relative">
+
+    <div class="hex-bg"></div>
+    <div class="bg-layer" id="bubble-container"></div>
+    
+    <div class="atom-spinner">
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="orbit"></div>
+        <div class="core"></div>
+    </div>
+
+    <div id="presentation-container" class="relative w-full h-full z-20 flex items-center justify-center">
+        
+        <div class="slide active" id="slide-1">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-4xl w-full mx-auto text-center border-t-4 border-t-sky-500">
+                <div class="mb-8 flex justify-center">
+                    <div class="w-24 h-24 rounded-full bg-sky-500/20 flex items-center justify-center border border-sky-400/30 animate-pulse">
+                        <svg class="w-12 h-12 text-sky-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white leading-tight">
+                    To Our Favorite <br/> Chemistry Teacher, <br/>
+                    <span class="text-sky-400 neon-text-sky block mt-2">Divya Mam</span>
+                </h1>
+                <p class="text-lg md:text-xl text-slate-300 font-light mt-4">
+                    A tribute to the bonds we've formed. ✨
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-3xl w-full mx-auto border-l-4 border-l-teal-400 text-center md:text-left">
+                <div class="text-6xl mb-6 opacity-80">⚛️</div>
+                <h2 class="text-3xl md:text-5xl font-bold leading-tight text-white">
+                    Like a strong <br/> <span class="text-teal-400 neon-text-teal">covalent bond</span>,
+                </h2>
+                <p class="text-xl md:text-3xl text-slate-200 font-light mt-6 leading-relaxed">
+                    the knowledge and values you've shared will stay with us forever.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-3xl w-full mx-auto border-r-4 border-r-violet-400 text-center">
+                <div class="text-6xl mb-6 opacity-80">⚡</div>
+                <h2 class="text-2xl md:text-4xl font-medium leading-relaxed text-white">
+                    You were the perfect <span class="text-violet-400 font-bold neon-text-violet">catalyst</span> in our lives—
+                </h2>
+                <p class="text-xl md:text-3xl text-slate-300 font-light mt-6 leading-relaxed">
+                    accelerating our learning without ever being consumed by our chaos.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-3xl w-full mx-auto border-t-4 border-t-rose-400 text-center">
+                <div class="text-6xl mb-6 opacity-80">🌡️</div>
+                <h2 class="text-2xl md:text-4xl font-medium leading-relaxed text-white">
+                    Even when the pressure was high and temperatures flared...
+                </h2>
+                <p class="text-xl md:text-3xl text-rose-300 font-medium mt-6 leading-relaxed">
+                    you remained our constant, guiding us to stability.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-3xl w-full mx-auto border-b-4 border-b-amber-400 text-center">
+                <div class="text-6xl mb-6 opacity-80">⚖️</div>
+                <h2 class="text-2xl md:text-4xl font-medium leading-relaxed text-white">
+                    You taught us how to <span class="text-amber-400">balance equations</span>,
+                </h2>
+                <p class="text-xl md:text-3xl text-slate-200 font-light mt-6 leading-relaxed">
+                    but more importantly, you showed us how to find <span class="font-semibold text-white">equilibrium</span> in life.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-3xl w-full mx-auto border-l-4 border-l-fuchsia-500 text-center">
+                <div class="text-6xl mb-6 opacity-80">🎆</div>
+                <h2 class="text-2xl md:text-4xl font-medium leading-relaxed text-white">
+                    Just like a <span class="text-fuchsia-400 font-bold">flame test</span> reveals brilliant colors,
+                </h2>
+                <p class="text-xl md:text-3xl text-slate-200 font-light mt-6 leading-relaxed">
+                    your teaching illuminated our minds and made every lesson vibrant.
+                </p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-7">
+            <div class="glass-card p-10 md:p-16 rounded-3xl max-w-4xl w-full mx-auto text-center border-t-4 border-t-sky-500 shadow-[0_0_50px_rgba(14,165,233,0.3)]">
+                <div class="text-6xl mb-6 opacity-90">👩‍🔬</div>
+                <h2 class="text-2xl md:text-4xl font-medium leading-relaxed text-white mb-8">
+                    You will always be an <span class="text-teal-400 font-bold">essential element</span> in the periodic table of our lives.
+                </h2>
+                <p class="text-xl md:text-2xl text-slate-300 font-light mb-8">
+                    Thank you for everything.
+                </p>
+                <div class="pt-6 border-t border-white/10">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-sky-400 neon-text-sky tracking-wide">
+                        Farewell, Divya Mam! 💙
+                    </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-6 md:bottom-10 left-0 right-0 z-30 flex justify-between items-center px-6 md:px-16 pointer-events-none">
+        <button id="prevBtn" class="pointer-events-auto bg-white/5 hover:bg-white/15 text-white p-4 md:px-6 md:py-3 rounded-full backdrop-blur-md border border-white/10 transition-all duration-300 flex items-center gap-2 disabled:opacity-20 disabled:cursor-not-allowed group z-50">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            <span class="hidden md:inline font-medium">Prev</span>
+        </button>
+        
+        <div class="flex gap-3 pointer-events-auto z-50" id="indicators">
+            <!-- Indicators injected via JS -->
+        </div>
+
+        <button id="nextBtn" class="pointer-events-auto bg-sky-500/20 hover:bg-sky-500/40 text-sky-100 p-4 md:px-6 md:py-3 rounded-full backdrop-blur-md border border-sky-400/30 transition-all duration-300 flex items-center gap-2 group shadow-[0_0_15px_rgba(14,165,233,0.3)] hover:shadow-[0_0_25px_rgba(14,165,233,0.6)] z-50">
+            <span class="hidden md:inline font-medium">Next</span>
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+        </button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const indicatorsContainer = document.getElementById('indicators');
+            let currentSlide = 0;
+            const totalSlides = slides.length;
+
+            for(let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full transition-all duration-500 ${i === 0 ? 'bg-sky-400 w-8 shadow-[0_0_10px_#0ea5e9]' : 'bg-white/30'}`;
+                indicatorsContainer.appendChild(dot);
+            }
+            const dots = indicatorsContainer.children;
+
+            const updateSlides = () => {
+                slides.forEach((slide, index) => {
+                    if (index === currentSlide) {
+                        slide.classList.add('active');
+                        // Slight parallax effect on entrance
+                        const card = slide.querySelector('.glass-card');
+                        if(card) {
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.transform = 'scale(1)';
+                                card.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                            }, 50);
+                        }
+                    } else {
+                        slide.classList.remove('active');
+                    }
+                });
+
+                Array.from(dots).forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.className = 'w-8 h-2 rounded-full transition-all duration-500 bg-sky-400 shadow-[0_0_10px_#0ea5e9]';
+                    } else {
+                        dot.className = 'w-2 h-2 rounded-full transition-all duration-500 bg-white/30 hover:bg-white/50 cursor-pointer';
+                    }
+                });
+
+                prevBtn.disabled = currentSlide === 0;
+                
+                if(currentSlide === totalSlides - 1) {
+                    nextBtn.style.opacity = '0';
+                    nextBtn.style.pointerEvents = 'none';
+                } else {
+                    nextBtn.style.opacity = '1';
+                    nextBtn.style.pointerEvents = 'auto';
+                }
+            };
+
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentSlide > 0) { currentSlide--; updateSlides(); }
+            });
+
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (currentSlide < totalSlides - 1) { currentSlide++; updateSlides(); }
+            });
+
+            // Allow clicking dots to navigate
+            Array.from(dots).forEach((dot, index) => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    currentSlide = index;
+                    updateSlides();
+                });
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    if (currentSlide < totalSlides - 1) { currentSlide++; updateSlides(); }
+                } else if (e.key === 'ArrowLeft') {
+                    if (currentSlide > 0) { currentSlide--; updateSlides(); }
+                }
+            });
+
+            document.addEventListener('click', function(e) {
+                // Prevent ripple on navigation buttons to avoid visual clutter
+                if(e.target.closest('button') || e.target.closest('#indicators')) return;
+
+                const ripple = document.createElement('div');
+                ripple.classList.add('ripple');
+                
+                ripple.style.left = e.clientX + 'px';
+                ripple.style.top = e.clientY + 'px';
+                
+                // Dynamic colors for the ripple based on chemistry theme
+                const colors = [
+                    'rgba(14, 165, 233, 0.5)',  // Sky
+                    'rgba(20, 184, 166, 0.5)',  // Teal
+                    'rgba(139, 92, 246, 0.5)',  // Violet
+                    'rgba(244, 63, 94, 0.5)'    // Rose
+                ];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                ripple.style.background = `radial-gradient(circle, ${randomColor} 0%, rgba(0,0,0,0) 60%)`;
+
+                document.body.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 800);
+            });
+
+            const bubbleContainer = document.getElementById('bubble-container');
+            const createBubble = () => {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                
+                const size = Math.random() * 25 + 5; 
+                const left = Math.random() * 100; 
+                const duration = Math.random() * 8 + 5; 
+                
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${left}%`;
+                bubble.style.animationDuration = `${duration}s`;
+
+                // Randomize bubble color slightly
+                const hue = Math.random() > 0.5 ? '199' : '174'; // Sky or Teal
+                bubble.style.borderColor = `hsla(${hue}, 89%, 48%, 0.3)`;
+                bubble.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), hsla(${hue}, 89%, 48%, 0.1))`;
+
+                bubbleContainer.appendChild(bubble);
+
+                setTimeout(() => {
+                    bubble.remove();
+                }, duration * 1000);
+            };
+
+            // Initialize initial batch of bubbles
+            for (let i = 0; i < 20; i++) {
+                setTimeout(createBubble, Math.random() * 4000);
+            }
+            // Continuously add bubbles
+            setInterval(createBubble, 600);
+        });
+    </script>
+</body>
+</html>
